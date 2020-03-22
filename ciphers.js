@@ -76,7 +76,7 @@ class Ciphers {
      * Шифрование магическими квадратами
      * @param {string} key 
      * @param {number[]} square 
-     * @return {string}
+     * @returns {string}
      */
     static magicSquare(text, square) {
         console.assert(text.length == square.length);
@@ -90,7 +90,7 @@ class Ciphers {
      * Шифр Плейфера
      * @param {string} text 
      * @param {string} key
-     * @return {string} 
+     * @returns {string} 
      */
     static playfair(text, key) {
         //реализация для матрицы 8x4 русского алфавита
@@ -115,7 +115,7 @@ class Ciphers {
      * @param {string} a 
      * @param {string} b 
      * @param {string} key 
-     * @return {string[]} 
+     * @returns {string[]} 
      */
     static playfairProcess(a, b, key) {
         let [aidx, bidx] = [key.indexOf(a), key.indexOf(b)];
