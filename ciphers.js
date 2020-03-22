@@ -117,16 +117,16 @@ class Ciphers {
      * @param {string} key 
      * @returns {string[]} 
      */
-    static _playfairProcess(a, b, key, colsCount, rowsount) {
+    static _playfairProcess(a, b, key, colsCount, rowsCount) {
         let [aidx, bidx] = [key.indexOf(a), key.indexOf(b)];
         let [ai, aj] = [aidx / colsCount | 0, aidx % colsCount];
         let [bi, bj] = [bidx / colsCount | 0, bidx % colsCount];
 
         if (ai == bi) 
-            return [key[ai * colsCount + (aj + 1) % rowsount], key[bi * colsCount + (bj + 1) % rowsount]];
+            return [key[ai * colsCount + (aj + 1) % rowsCount], key[bi * colsCount + (bj + 1) % rowsCount]];
         
         if (aj == bj)
-            return [key[((ai + 1) % rowsount) * colsCount + aj], key[((bi + 1) % rowsount) * colsCount + bj]];   
+            return [key[((ai + 1) % rowsCount) * colsCount + aj], key[((bi + 1) % rowsCount) * colsCount + bj]];   
             
         return [key[ai * colsCount + bj], key[bi * colsCount + ai]];
     }
