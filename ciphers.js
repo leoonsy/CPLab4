@@ -105,7 +105,7 @@ class Ciphers {
             result.push('X');
         
         for (let i of _.range(0, text.length, 2)) 
-            [result[i], result[i + 1]] = this.playfairProcess(result[i], result[i + 1], key);
+            [result[i], result[i + 1]] = this._playfairProcess(result[i], result[i + 1], key, 8, 5);
 
         return result.join('');  
     }
@@ -117,18 +117,18 @@ class Ciphers {
      * @param {string} key 
      * @returns {string[]} 
      */
-    static playfairProcess(a, b, key) {
+    static _playfairProcess(a, b, key, colsCount, rowsount) {
         let [aidx, bidx] = [key.indexOf(a), key.indexOf(b)];
-        let [ai, aj] = [aidx / 8 | 0, aidx % 8];
-        let [bi, bj] = [bidx / 8 | 0, bidx % 8];
+        let [ai, aj] = [aidx / colsCount | 0, aidx % colsCount];
+        let [bi, bj] = [bidx / colsCount | 0, bidx % colsCount];
 
         if (ai == bi) 
-            return [key[ai * 8 + (aj + 1) % 5], key[bi * 8 + (bj + 1) % 5]];
+            return [key[ai * colsCount + (aj + 1) % rowsount], key[bi * colsCount + (bj + 1) % rowsount]];
         
         if (aj == bj)
-            return [key[((ai + 1) % 5) * 8 + aj], key[((bi + 1) % 5) * 8 + bj]];   
+            return [key[((ai + 1) % rowsount) * colsCount + aj], key[((bi + 1) % rowsount) * colsCount + bj]];   
             
-        return [key[ai * 8 + bj], key[bi * 8 + ai]];
+        return [key[ai * colsCount + bj], key[bi * colsCount + ai]];
     }
 }
 
