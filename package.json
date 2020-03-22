@@ -1,0 +1,11 @@
+{
+  "name": "crypto_protocols_lab4",
+  "version": "1.0.0",
+  "description": "empty",
+  "author": "Yashanovsky Sergey",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
