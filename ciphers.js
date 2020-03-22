@@ -115,6 +115,7 @@ class Ciphers {
      * @param {string} a 
      * @param {string} b 
      * @param {string} key 
+     * @return {string[]} 
      */
     static playfairProcess(a, b, key) {
         let [aidx, bidx] = [key.indexOf(a), key.indexOf(b)];
