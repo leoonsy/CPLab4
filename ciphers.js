@@ -105,7 +105,7 @@ class Ciphers {
             result.push('X');
         
         for (let i of _.range(0, text.length, 2)) 
-            [result[i], result[i + 1]] = this._playfairProcess(result[i], result[i + 1], key, 8, 5);
+            [result[i], result[i + 1]] = this._playfairProcess(result[i], result[i + 1], key, 8, 4);
 
         return result.join('');  
     }
