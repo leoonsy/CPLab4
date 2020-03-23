@@ -95,11 +95,9 @@ class Ciphers {
     static playfair(text, key) {
         //реализация для матрицы 8x4 русского алфавита
         let result = [...text];
-        for (let i = 1; i < result.length; ) {
+        for (let i = 1; i < result.length; i += 2)
             if (result[i] == result[i - 1])
                 result.splice(i, 0, 'Х');
-            i += 2;
-        }
 
         if (result.length % 2 !== 0)
             result.push('X');
