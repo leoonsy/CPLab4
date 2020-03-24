@@ -9,7 +9,7 @@ class Ciphers {
      */
     static simplePermutation(text, key) {
         const result = Array(key).fill('');
-        for (let i = 0; i < result.length; i++) 
+        for (let i = 0; i < result.length; i++)
             for (let idx of _.range(i, text.length, key))
                 result[i] += text[idx];
 
@@ -24,7 +24,7 @@ class Ciphers {
      */
     static singlePermutation(text, key, doSimplePermutation = false) {
         console.assert(text.length % key.length == 0);
-        
+
         if (doSimplePermutation)
             text = this.simplePermutation(text, text.length / key.length);
         let result = [];
@@ -32,7 +32,7 @@ class Ciphers {
             let temp = [key.length];
             for (let i of _.range(key.length))
                 temp[key[i]] = text[block + i];
-            
+
             result = result.concat(temp);
         }
         return result.join('');
@@ -69,7 +69,16 @@ class Ciphers {
             default:
                 throw new Error('Неизвестный тип для нормализации');
         }
-        return arr.map(e => sortedKey.indexOf(e));
+        let result = [];
+        arr.forEach(e => {
+            let index = -1;
+            do {
+                index = sortedKey.indexOf(e, index + 1);
+            }
+            while (result.indexOf(index) != -1)
+            result.push(index)
+        });
+        return result;
     }
 
     /**
@@ -80,7 +89,7 @@ class Ciphers {
      */
     static magicSquare(text, square) {
         console.assert(text.length == square.length);
-        
+
         let result = [];
         square.forEach((v, idx) => result[idx] = text[v]);
         return result.join('');
@@ -101,11 +110,11 @@ class Ciphers {
 
         if (result.length % 2 !== 0)
             result.push('X');
-        
-        for (let i of _.range(0, text.length, 2)) 
+
+        for (let i of _.range(0, text.length, 2))
             [result[i], result[i + 1]] = this._playfairProcess(result[i], result[i + 1], key, 8, 4);
 
-        return result.join('');  
+        return result.join('');
     }
 
     /**
@@ -120,12 +129,12 @@ class Ciphers {
         let [ai, aj] = [aidx / colsCount | 0, aidx % colsCount];
         let [bi, bj] = [bidx / colsCount | 0, bidx % colsCount];
 
-        if (ai == bi) 
+        if (ai == bi)
             return [key[ai * colsCount + (aj + 1) % rowsCount], key[bi * colsCount + (bj + 1) % rowsCount]];
-        
+
         if (aj == bj)
-            return [key[((ai + 1) % rowsCount) * colsCount + aj], key[((bi + 1) % rowsCount) * colsCount + bj]];   
-            
+            return [key[((ai + 1) % rowsCount) * colsCount + aj], key[((bi + 1) % rowsCount) * colsCount + bj]];
+
         return [key[ai * colsCount + bj], key[bi * colsCount + ai]];
     }
 }
