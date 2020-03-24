@@ -61,7 +61,7 @@ class Ciphers {
         let sortedKey;
         switch (type) {
             case 'STRING_ARRAY':
-                sortedKey = [...arr].sort((a, b) => a >= b);
+                sortedKey = [...arr].sort();
                 break;
             case 'NUMBER_ARRAY':
                 sortedKey = [...arr].sort((a, b) => a - b);

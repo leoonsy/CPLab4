@@ -1,7 +1,7 @@
 const Ciphers = require('./ciphers');
 const _ = require('lodash');
 
-let text = 'ТЕРМИНАТОРПРИБЫВАЕТСЕДЬМОГОВПОЛНОЧЬ', key = 6;
+let text = 'ТЕРМИНАТОРПРИБЫВАЕТСЕДЬМОГОВПОЛНОЧЬ', key = 5;
 //Простая перестановка
 const simplePermutationResult = Ciphers.simplePermutation(text, key);
 console.log(simplePermutationResult);
