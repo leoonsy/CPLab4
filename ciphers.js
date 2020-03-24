@@ -101,8 +101,8 @@ class Ciphers {
      * @param {string} key
      * @returns {string} 
      */
-    static playfair(text, key) {
-        //реализация для матрицы 8x4 русского алфавита
+    static playfair(text, key, colsKey = 8, rowsKey = 4) {
+        //по умолчанию реализация для матрицы 8x4 русского алфавита
         let result = [...text];
         for (let i = 1; i < result.length; i += 2)
             if (result[i] == result[i - 1])
@@ -112,7 +112,7 @@ class Ciphers {
             result.push('X');
 
         for (let i of _.range(0, text.length, 2))
-            [result[i], result[i + 1]] = this._playfairProcess(result[i], result[i + 1], key, 8, 4);
+            [result[i], result[i + 1]] = this._playfairProcess(result[i], result[i + 1], key, colsKey, rowsKey);
 
         return result.join('');
     }
